@@ -2588,8 +2588,10 @@ svm_vcpu_run(struct kvm_vcpu *vcpu)
 	 * on relative priorities, fudge attention from
 	 * the dispatcher:
 	 */
-	CPU->cpu_kprunrun = 1;
-	membar_enter();
+	if (CPU->cpu_runrun) {
+		CPU->cpu_kprunrun = 1;
+		membar_enter();
+	}
 }
 
 static void
