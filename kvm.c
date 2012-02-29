@@ -2841,7 +2841,9 @@ static struct dev_ops kvm_ops = {
 	kvm_detach,
 	nodev,		/* reset */
 	&kvm_cb_ops,
-	(struct bus_ops *)0
+	(struct bus_ops *)0,
+	NULL,
+	ddi_quiesce_not_supported
 };
 
 static struct modldrv modldrv = {
